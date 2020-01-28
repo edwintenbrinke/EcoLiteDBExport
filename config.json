@@ -1,0 +1,11 @@
+{
+	"api_url": "http://localhost:8000/test",
+	"game_database_file": "C:/Users/Edwin/source/repos/EcoLiteDBExport/Game.db",
+	"previous_run_data": [{
+		"id": 0,
+		"name": "PickupAction"
+	}, {
+		"id": 0,
+		"name": "PlayAction"
+	}]
+}
