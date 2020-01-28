@@ -105,7 +105,7 @@ namespace EcoLiteDBExport
             Dictionary<string, List<data_models>> api_data = new Dictionary<string, List<data_models>>();
             foreach (var previous_run in previous_run_data)
             {
-                log(string.Format("starting {0}", previous_run.name));
+                log(string.Format("starting {0} collection export", previous_run.name));
 
                 // initiate the current database response
                 List<data_models> result = new List<data_models>();
@@ -116,7 +116,7 @@ namespace EcoLiteDBExport
                 // set index on _id
                 collection.EnsureIndex(x => x._id);
 
-                log(string.Format("executing query for {0}", previous_run.name));
+                log(string.Format("executing query for {0} collection", previous_run.name));
                 // execute query to get all rows since id
                 var query = collection.Find(x => x._id > previous_run.id);
                 foreach (var entry in query)
