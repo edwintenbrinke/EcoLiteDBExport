@@ -12,16 +12,18 @@ namespace EcoLiteDBExport
         public int id { get; set; }
         public string name { get; set; }
     }
-
+    
     public class data_models
     {
         public int _id { get; set; }
         public int TimeSeconds { get; set; }
-        public string ActorId { get; set; }
+        public string Username { get; set; }
+        public Guid AuthId { get; set; }
+        public Guid WorldObjectId { get; set; }
         public double Value { get; set; }
         public string ItemTypeName { get; set; }
         public string SpeciesName { get; set; }
-        public int DistrictId { get; set; }
+        public string WorldObjectTypeName { get; set; }
     }
 
     public class config
