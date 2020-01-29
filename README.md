@@ -11,6 +11,7 @@ An database export tool for the game Eco
 
 ### TODO
 - implement other collections to the data_models
+- check if a collection has been added to the config.json & update the privous_run_data.json
 - make it loop every {config} minutes
 - error handling
 - send logs to api to monitor memory usage etc
