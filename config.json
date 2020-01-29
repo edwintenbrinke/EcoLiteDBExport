@@ -1,5 +1,7 @@
 {
-	"api_url": "http://localhost:8000/test",
+	"timeout": 5000,
+	"query_limit": 5000,
+	"api_url": "http://api.mafia.edwintenbrinke.nl/test",
 	"game_database_file": "C:/Users/Edwin/source/repos/EcoLiteDBExport/Game.db",
 	"previous_run_data": [{
 		"id": 0,
@@ -7,5 +9,20 @@
 	}, {
 		"id": 0,
 		"name": "PlayAction"
+	}, {
+		"id": 0,
+		"name": "CraftAction"
+	}, {
+		"id": 0,
+		"name": "HarvestAction"
+	}, {
+		"id": 0,
+		"name": "PlaceAction"
+	}, {
+		"id": 0,
+		"name": "BuyAction"
+	}, {
+		"id": 0,
+		"name": "SaleAction"
 	}]
 }

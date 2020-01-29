@@ -20,10 +20,14 @@ namespace EcoLiteDBExport
         public string ActorId { get; set; }
         public double Value { get; set; }
         public string ItemTypeName { get; set; }
+        public string SpeciesName { get; set; }
+        public int DistrictId { get; set; }
     }
 
     public class config
     {
+        public int timeout { get; set; }
+        public int query_limit { get; set; }
         public string api_url { get; set; }
         public string game_database_file { get; set; }
         public previous_run_data[] previous_run_data { get; set; }
@@ -58,6 +62,7 @@ namespace EcoLiteDBExport
                     api_url,
                     JsonConvert.SerializeObject(post_data)
                 );
+                log("posted to api");
             }
         }
 
@@ -88,15 +93,13 @@ namespace EcoLiteDBExport
             return JsonConvert.DeserializeObject<List<previous_run_data>>(json);
         }
 
-        static void Main(string[] args)
+        static void processNewRecords(config config_data)
         {
-            // get config data
-            config config_data = getConfigData();
 
             // get the previous run data
             string previous_run_file_location = string.Format("{0}{1}", AppDomain.CurrentDomain.BaseDirectory, previous_run_file_name);
             List<previous_run_data> previous_run_data = getPreviousRunData(previous_run_file_location, config_data);
-           
+
             // connect to database
             var db = new LiteDatabase(config_data.game_database_file);
 
@@ -118,7 +121,7 @@ namespace EcoLiteDBExport
 
                 log(string.Format("executing query for {0} collection", previous_run.name));
                 // execute query to get all rows since id
-                var query = collection.Find(x => x._id > previous_run.id);
+                var query = collection.Find(x => x._id > previous_run.id, limit: config_data.query_limit);
                 foreach (var entry in query)
                 {
                     // add response to the database response array
@@ -139,6 +142,29 @@ namespace EcoLiteDBExport
 
             // get api url
             postData(config_data.api_url, api_data);
+        }
+
+        static void Main(string[] args)
+        {
+            while(true)
+            {
+                // loop every x minutes
+                log("*************************");
+                try
+                {
+                    // get config data
+                    config config_data = getConfigData();
+                    processNewRecords(config_data);
+                    System.Threading.Thread.Sleep(config_data.timeout);
+                }
+                catch (Exception ex)
+                {
+                    log("program crashed");
+                    // sleep 1 minute if the program crashes
+                    System.Threading.Thread.Sleep(1000*60);
+                }
+
+            }
         }
     }
 }
