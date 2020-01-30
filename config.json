@@ -1,7 +1,8 @@
 {
+	"api_access_token": "xxxxx",
 	"timeout": 5000,
 	"query_limit": 5000,
-	"api_url": "http://api.mafia.edwintenbrinke.nl/test",
+	"api_url": "http://192.168.178.47:8000/api/eco/data",
 	"game_database_file": "C:/Users/Edwin/source/repos/EcoLiteDBExport/Game.db",
 	"previous_run_data": [{
 		"id": 0,
@@ -23,6 +24,6 @@
 		"name": "BuyAction"
 	}, {
 		"id": 0,
-		"name": "SaleAction"
+		"name": "SellAction"
 	}]
 }
