@@ -34,7 +34,7 @@ namespace EcoLiteDBExport
         public int timeout { get; set; }
         public int query_limit { get; set; }
         public string api_url { get; set; }
-        public string game_database_file { get; set; }
+        public string server_dir { get; set; }
         public previous_run_data[] previous_run_data { get; set; }
     }
 
@@ -105,8 +105,8 @@ namespace EcoLiteDBExport
             string previous_run_file_location = string.Format("{0}{1}", AppDomain.CurrentDomain.BaseDirectory, previous_run_file_name);
             List<previous_run_data> previous_run_data = getPreviousRunData(previous_run_file_location, config_data);
 
-            DirectoryInfo backup_directory = new DirectoryInfo(config_data.game_database_file);
-            var storage_directories = Directory.GetDirectories(string.Format("{0}/Storage", config_data.game_database_file));
+            DirectoryInfo backup_directory = new DirectoryInfo(config_data.server_dir);
+            var storage_directories = Directory.GetDirectories(string.Format("{0}/Storage", config_data.server_dir));
             foreach (string storage in storage_directories)
             {
                 if (!storage.Contains("Backup"))
@@ -114,7 +114,7 @@ namespace EcoLiteDBExport
                     continue;
                 }
 
-                backup_directory = new DirectoryInfo(string.Format("{0}/Storage/Backup", config_data.game_database_file)).GetDirectories()
+                backup_directory = new DirectoryInfo(string.Format("{0}/Storage/Backup", config_data.server_dir)).GetDirectories()
                     .OrderByDescending(f => f.LastWriteTime)
                     .First();
             }

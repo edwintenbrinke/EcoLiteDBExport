@@ -3,7 +3,7 @@
 	"timeout": 5000,
 	"query_limit": 5000,
 	"api_url": "http://192.168.178.47:8000/api/eco/data",
-	"game_database_file": "C:/Users/Edwin/source/repos/EcoLiteDBExport/Game.db",
+	"server_dir": "C:/Users/Edwin/Documents/My Games/EcoServer",
 	"previous_run_data": [{
 		"id": 0,
 		"name": "PickupAction"
